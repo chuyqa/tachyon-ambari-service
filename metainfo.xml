@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<metainfo>
+    <schemaVersion>2.0</schemaVersion>
+    <services>
+        <service>
+            <name>TACHYON</name>
+            <displayName>Tachyon</displayName>
+            <comment>Memory Centric Reliable Distributed Storage</comment>
+            <version>0.8.0</version>
+            <components>
+                <component>
+                    <name>TACHYON_MASTER</name>
+                    <displayName>Tachyon Master</displayName>
+                    <category>MASTER</category>
+                    <cardinality>1</cardinality>
+                    <commandScript>
+                        <script>scripts/master.py</script>
+                        <scriptType>PYTHON</scriptType>
+                        <timeout>500</timeout>
+                    </commandScript>
+                </component>
+                <component>
+                    <name>TACHYON_SLAVE</name>
+                    <displayName>Tachyon Worker</displayName>
+                    <category>SLAVE</category>
+                    <cardinality>1+</cardinality>
+                    <commandScript>
+                        <script>scripts/slave.py</script>
+                        <scriptType>PYTHON</scriptType>
+                        <timeout>300</timeout>
+                    </commandScript>
+                </component>
+             </components>
+            <osSpecifics>
+                <osSpecific>
+                    <osFamily>redhat6</osFamily>  
+                </osSpecific>
+            </osSpecifics>
+            <configuration-dependencies>
+              <config-type>tachyon-config</config-type>
+              <config-type>tachyon-env</config-type>
+            </configuration-dependencies>
+        </service>
+    </services>
+</metainfo>

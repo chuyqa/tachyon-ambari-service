@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+
+  <property>
+    <name>tachyon.archive.file</name>
+    <description>tachyon archive file</description>
+    <value>tachyon-0.8.0-bin.tar.gz</value>
+  </property>
+
+  <property require-input="true">
+    <name>tachyon.master.address</name>
+    <description>node where master server is deployed</description>
+    <value></value>
+  </property>
+
+  <property require-input="true">
+    <name>tachyon.underfs.address</name>
+    <description>Tachyon UnderFS Address</description>
+    <value>hdfs://0.0.0.0:8020</value>
+  </property>
+
+  <property>
+    <name>tachyon.worker.memory</name>
+    <description>Tachyon Worker Memory</description>
+    <value>2GB</value>
+  </property>
+
+</configuration>
