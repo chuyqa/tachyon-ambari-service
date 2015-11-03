@@ -8,7 +8,7 @@ Install, start/stop service functional
 **Installing in IOP 4.2**
 ```
 # Clone the service deployer
-git clone https://github.com/chuyqa/tachyon-service /var/lib/ambari-server/resource/stacks/BigInsights/4.2/services/tachyon-service
+git clone https://github.com/chuyqa/tachyon-ambari-service /var/lib/ambari-server/resource/stacks/BigInsights/4.2/services/tachyon-service
 
 ambari-server restart
 
@@ -18,7 +18,7 @@ ambari-server restart
 
 ```
 # Clone the service deployer
-git clone https://github.com/chuyqa/tachyon-service /var/lib/ambari-server/resource/stacks/hdp/2.3/services/tachyon-service
+git clone https://github.com/chuyqa/tachyon-ambari-service /var/lib/ambari-server/resource/stacks/HDP/2.3/services/TACHYON
 
 ambari-server restart
 
@@ -45,4 +45,4 @@ Kerberos.json
 Status Check via Ambari
 Parse tachyon.underfs.address from HDFS Advanced core-site: fs.defaultFS 
 
-Forked from https://github.com/seraphin/tachyon-service
+Inspried from outdated fork: https://github.com/seraphin/tachyon-service
