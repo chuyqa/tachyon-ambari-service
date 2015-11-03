@@ -8,7 +8,7 @@ Install, start/stop service functional
 **Installing in IOP 4.2**
 ```
 # Clone the service deployer
-git clone https://github.com/chuyqa/tachyon-ambari-service /var/lib/ambari-server/resource/stacks/BigInsights/4.2/services/tachyon-service
+git clone https://github.com/chuyqa/tachyon-ambari-service /var/lib/ambari-server/resources/stacks/BigInsights/4.2/services/TACHYON
 
 ambari-server restart
 
@@ -18,7 +18,7 @@ ambari-server restart
 
 ```
 # Clone the service deployer
-git clone https://github.com/chuyqa/tachyon-ambari-service /var/lib/ambari-server/resource/stacks/HDP/2.3/services/TACHYON
+git clone https://github.com/chuyqa/tachyon-ambari-service /var/lib/ambari-server/resources/stacks/HDP/2.3/services/TACHYON
 
 ambari-server restart
 
@@ -31,18 +31,24 @@ ambari-server restart
 * Select a master server node and worker nodes 
 
 * Update required tachyon-config:
-tachyon.master.address = Hostname of Tachyon master selected 
-tachyon.underfs.address = hdfs://namenode:8020
+
+    tachyon.master.address = Hostname of Tachyon master selected 
+    tachyon.underfs.address = hdfs://namenode:8020
 
 * tachyon.worker.memory = Specifiy how much memory to allocate to each tachyon worker master/worker
 
 
 Once Service is started, you may access Tachyon Master on ***tachyon.master.ip*:19999**
 
-Future Work:
+**Future Work:**
+
 Alerts.json
+
 Kerberos.json
+
 Status Check via Ambari
+
 Parse tachyon.underfs.address from HDFS Advanced core-site: fs.defaultFS 
+
 
 Inspried from outdated fork: https://github.com/seraphin/tachyon-service
