@@ -33,17 +33,15 @@ stack_version = format_hdp_stack_version(default("/commandParams/version", None)
 if os.path.exists("/usr/bin/iop-select"):
   cmd = "/usr/bin/iop-select versions"
   usr_base = "/usr/iop/"
-  base_dir = usr_base + commands.getoutput(cmd) + "/tachyon/"
-  tachyon_package_dir = "/var/lib/ambari-agent/cache/stacks/" + stack_name + "/" + stack_version[:3] + "/services/TACHYON/package/"
 elif os.path.exists("/usr/bin/hdp-select"):
   cmd = "/usr/bin/hdp-select versions"
   usr_base = "/usr/hdp/"
-  base_dir = usr_base + commands.getoutput(cmd) + "/tachyon/"
-  tachyon_package_dir = "/var/lib/ambari-agent/cache/stacks/" + stack_name + "/" + stack_version + "/services/TACHYON/package/"
 else:
-  base_dir = "/usr/odp/tachyon/"
-  tachyon_package_dir = "/var/lib/ambari-agent/cache/stacks/" + stack_name + "/" + stack_version + "/services/tachyon-service/package/"
+  usr_base = "/usr/odp/"
+base_dir = usr_base + commands.getoutput(cmd) + "/tachyon/"
   
+# Tachyon archive on agent nodes
+tachyon_package_dir = "/var/lib/ambari-agent/cache/stacks/" + stack_name + "/" + stack_version[:3] + "/services/TACHYON/package/"
 
 # tachyon log dir
 log_dir = config['configurations']['tachyon-env']['tachyon.log.dir']
