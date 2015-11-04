@@ -16,13 +16,19 @@ class Slave(Script):
     # Install packages listed in metainfo.xml
     self.install_packages(env)
 
-    cmd = '/bin/tar' + ' -zxf ' + params.tachyon_package_dir + 'files/' + params.tachyon_archive_file + ' -C  /'
+    # Create the base_dir/tachyon dir
+    cmd = '/bin/mkdir' + ' -p ' + params.base_dir
     Execute('echo "Running ' + cmd + '"')
     Execute(cmd)
-        
-    cmd = '/bin/ln' + ' -s ' + params.base_dir + '/tachyon' + ' /usr/iop/current/'
+
+    cmd = '/bin/tar' + ' -zxf ' + params.tachyon_package_dir + 'files/' +  params.tachyon_archive_file + ' --strip 1 -C ' + params.base_dir
     Execute('echo "Running ' + cmd + '"')
-    # I don't care if the link already exists
+    Execute(cmd)
+   
+    #hackyy for now, should be resolved via conf-select/iop-select/hdp-select if rpm is avail     
+    cmd = '/bin/ln' + ' -s ' + params.base_dir  + ' ' + params.usr_base + 'current/'
+    Execute('echo "Running ' + cmd + '"')
+   
     try:
       Execute(cmd)
     except:

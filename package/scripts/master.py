@@ -25,9 +25,8 @@ class Master(Script):
     Execute('echo "Running ' + cmd + '"')
     Execute(cmd)
 
-    cmd = '/bin/ln' + ' -s ' + params.base_dir + ' /usr/iop/current/tachyon'
+    cmd = '/bin/ln' + ' -s ' + params.base_dir + ' ' + params.usr_base + 'current/tachyon'
     Execute('echo "Running ' + cmd + '"')
-    # it doesn't matter if the link already exists
     try:
       Execute(cmd)
     except:
