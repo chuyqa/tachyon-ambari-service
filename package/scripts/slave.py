@@ -66,6 +66,7 @@ class Slave(Script):
 
     # Create pid file - note check_process_status expects a SINGLE int in the file
     cmd = "mkdir -p " + params.pid_dir
+    Execute(cmd)
     cmd = "echo `ps -A -o pid,command | grep -i \"[j]ava\" | grep TachyonWorker | awk '{print $1}'`> " + params.pid_dir + "/TachyonWorker.pid"
     Execute(cmd)
     pid_file = format("{params.pid_dir}/TachyonWorker.pid")

@@ -75,6 +75,7 @@ class Master(Script):
     
     # Create pid file - note check_process_status expects a SINGLE int in the file
     cmd = "mkdir -p " + params.pid_dir
+    Execute(cmd)
     cmd = "echo `ps -A -o pid,command | grep -i \"[j]ava\" | grep TachyonMaster | awk '{print $1}'`> " + params.pid_dir + "/TachyonMaster.pid"
     Execute(cmd)
     pid_file = format("{params.pid_dir}/TachyonMaster.pid")
