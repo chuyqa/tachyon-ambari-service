@@ -15,7 +15,7 @@ tmp_dir = Script.get_tmp_dir()
 tachyon_archive_file = config['configurations']['tachyon-config']['tachyon.archive.file']
 
 # tachyon master address
-tachyon_master = config['configurations']['tachyon-config']['tachyon.master.address']
+tachyon_master = config['clusterHostInfo']['tachyon_master_hosts'] 
 
 # tachyon underfs address
 underfs_addr = config['configurations']['tachyon-config']['tachyon.underfs.address']
