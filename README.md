@@ -28,9 +28,13 @@ ambari-server restart
 ```
 
 
-**2. Add service via ambari ui**
+**2. Add service via Ambari ui**
+
+![Add service](https://raw.githubusercontent.com/chuyqa/tachyon-ambari-service/branch-0.8-Deprecated/package/files/add_service.jpg)
+
 
 **3. Assign a Tachyon Master And Worker nodes.**
+
 By default the master will also run a worker 
 
 
