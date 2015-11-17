@@ -58,11 +58,18 @@ class Slave(Script):
   def start(self, env):
     import params
     
-    #mount ramfs
+    #Mount ramfs
     cmd = params.base_dir + '/bin/tachyon-start.sh ' + 'worker' + ' Mount'
-      
+    
     Execute('echo "Running cmd: ' + cmd + '"')    
     Execute(cmd)
+
+    # Create pid file - note check_process_status expects a SINGLE int in the file
+    cmd = "mkdir -p " + params.pid_dir
+    cmd = "echo `ps -A -o pid,command | grep -i \"[j]ava\" | grep TachyonWorker | awk '{print $1}'`> " + params.pid_dir + "/TachyonWorker.pid"
+    Execute(cmd)
+    pid_file = format("{params.pid_dir}/TachyonWorker.pid")
+
 
   #Called to stop the service using the pidfile
   def stop(self, env):
@@ -74,17 +81,12 @@ class Slave(Script):
     Execute('echo "Running cmd: ' + cmd + '"')    
     Execute(cmd)
       	
-  #Called to get status of the service using the pidfile
+  #Check pid file using Ambari check_process_status
   def status(self, env):
     import params
-  
-    #call status
-    cmd = params.base_dir + '/bin/tachyon status slave'
-
-    try:
-      Execute(cmd)
-    except Fail:
-      raise ComponentIsNotRunning()
+    
+    pid_file = format("{params.pid_dir}/TachyonWorker.pid")
+    check_process_status(pid_file)   
 
 
 if __name__ == "__main__":

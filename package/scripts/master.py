@@ -73,17 +73,11 @@ class Master(Script):
     Execute('echo "Running cmd: ' + cmd + '"')    
     Execute(cmd)
     
-    #mount ramfs local to master service
-    cmd = params.base_dir + '/bin/tachyon-start.sh ' + 'worker' + ' Mount'
-      
-    Execute('echo "Running cmd: ' + cmd + '"')    
-    Execute(cmd)
-
     # Create pid file - note check_process_status expects a SINGLE int in the file
     cmd = "mkdir -p " + params.pid_dir
-    cmd = "echo `ps -A -o pid,command | grep -i \"[j]ava\" | grep TachyonMaster | awk '{print $1}'`> " + params.pid_dir + "/tachyon.pid"
+    cmd = "echo `ps -A -o pid,command | grep -i \"[j]ava\" | grep TachyonMaster | awk '{print $1}'`> " + params.pid_dir + "/TachyonMaster.pid"
     Execute(cmd)
-    pid_file = format("{params.pid_dir}/tachyon.pid")
+    pid_file = format("{params.pid_dir}/TachyonMaster.pid")
 
   #Called to stop the service using tachyon provided stop
   def stop(self, env):
@@ -99,7 +93,7 @@ class Master(Script):
   def status(self, env):
     import params
     
-    pid_file = format("{params.pid_dir}/tachyon.pid")
+    pid_file = format("{params.pid_dir}/TachyonMaster.pid")
     check_process_status(pid_file)    
 
 if __name__ == "__main__":
