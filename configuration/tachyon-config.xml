@@ -9,12 +9,6 @@
   </property>
 
   <property require-input="true">
-    <name>tachyon.master.address</name>
-    <description>node where master server is deployed</description>
-    <value></value>
-  </property>
-
-  <property require-input="true">
     <name>tachyon.underfs.address</name>
     <description>Tachyon UnderFS Address</description>
     <value>hdfs://0.0.0.0:8020</value>
