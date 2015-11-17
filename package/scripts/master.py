@@ -79,8 +79,13 @@ class Master(Script):
     Execute('echo "Running cmd: ' + cmd + '"')    
     Execute(cmd)
 
+    # Create pid file - note check_process_status expects a SINGLE int in the file
+    cmd = "mkdir -p " + params.pid_dir
+    cmd = "echo `ps -A -o pid,command | grep -i \"[j]ava\" | grep TachyonMaster | awk '{print $1}'`> " + params.pid_dir + "/tachyon.pid"
+    Execute(cmd)
+    pid_file = format("{params.pid_dir}/tachyon.pid")
 
-  #Called to stop the service using the pidfile
+  #Called to stop the service using tachyon provided stop
   def stop(self, env):
     import params
     
@@ -93,14 +98,9 @@ class Master(Script):
   #Called to get status of the service using the pidfile
   def status(self, env):
     import params
-  
-    #call status
-    cmd = params.base_dir + '/bin/tachyon status master'
-
-    try:
-      Execute(cmd)
-    except Fail:
-      raise ComponentIsNotRunning()
+    
+    pid_file = format("{params.pid_dir}/tachyon.pid")
+    check_process_status(pid_file)    
 
 if __name__ == "__main__":
   Master().execute()

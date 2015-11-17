@@ -27,7 +27,7 @@
   <property>
     <name>tachyon.pid.dir</name>
     <description>Tachyon pid Directory</description>
-    <value>/var/run/tachyon/</value>
+    <value>/var/run/tachyon</value>
   </property>
 
   <property>
